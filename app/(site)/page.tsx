@@ -3,11 +3,13 @@ import { redirect } from "next/navigation";
 
 import AuthForm from "./components/AuthForm";
 import getSession from "../actions/getSession";
+import { NextPage } from "next";
+import { NextRequest } from "next/server";
 
 export default async function Home() {
   const session = await getSession();
   if (session) {
-    redirect("/users");
+    redirect("/conversations");
   }
 
   return (

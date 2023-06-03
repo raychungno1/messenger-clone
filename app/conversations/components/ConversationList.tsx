@@ -7,12 +7,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MdOutlineGroupAdd } from "react-icons/md";
 import ConversationBox from "./ConversationBox";
+import { Session } from "next-auth";
 
 interface ConversationListProps {
+  session: Session;
   initialItems: FullConversationType[];
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
+  session,
   initialItems,
 }) => {
   const router = useRouter();
@@ -36,6 +39,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
         {items.map((item) => (
           <ConversationBox
             key={item.id}
+            session={session}
             data={item}
             selected={conversationId === item.id}
           />

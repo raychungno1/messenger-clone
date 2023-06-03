@@ -6,7 +6,7 @@ import { BsGithub, BsGoogle } from "react-icons/bs";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Input from "@/app/components/inputs/Input";
 import Button from "@/app/components/Button";
@@ -16,6 +16,7 @@ type Variant = "LOGIN" | "REGISTER";
 
 const AuthForm = () => {
   const router = useRouter();
+  const callbackUrl = useSearchParams().get("callbackUrl") ?? "";
   const [isLoading, setIsLoading] = useState(false);
 
   // Form variant
@@ -47,11 +48,7 @@ const AuthForm = () => {
     authorizationParams
   ) => {
     setIsLoading(true);
-    signIn(
-      provider,
-      { ...options, redirect: false, callbackUrl: "/users" },
-      authorizationParams
-    )
+    signIn(provider, { ...options, redirect: false }, authorizationParams)
       .then((callback) => {
         if (callback?.error) {
           toast.error("Invalid credentials");
@@ -60,7 +57,7 @@ const AuthForm = () => {
 
         if (callback?.ok) {
           toast.success("Logged in!");
-          router.push("/users");
+          router.push(callbackUrl);
         }
       })
       .finally(() => setIsLoading(false));
@@ -81,7 +78,7 @@ const AuthForm = () => {
 
   const socialLogin = (action: string) => {
     setIsLoading(true);
-    signIn(action, { callbackUrl: "/users" });
+    signIn(action, { callbackUrl });
   };
 
   return (

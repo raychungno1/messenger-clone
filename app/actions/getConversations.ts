@@ -7,14 +7,8 @@ const getConversations = async () => {
 
   try {
     return await prisma.conversation.findMany({
-      orderBy: {
-        lastMessageAt: "desc",
-      },
-      where: {
-        userIds: {
-          has: currentUser.id,
-        },
-      },
+      orderBy: { lastMessageAt: "desc" },
+      where: { userIds: { has: currentUser.id } },
       include: {
         users: true,
         messages: { include: { sender: true, seen: true } },
