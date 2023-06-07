@@ -25,14 +25,14 @@ const ConversationList: React.FC<ConversationListProps> = ({
   return (
     <aside
       className={clsx(
-        "fixed inset-y-0 pb-20 lg:pb-0 lg:left-20 lg:w-80 lg:block overflow-y-auto border-r border-gray-200",
-        isOpen ? "hidden" : "block w-full left-0"
+        "fixed inset-y-0 overflow-y-auto border-r border-gray-200 pb-20 lg:left-20 lg:block lg:w-80 lg:pb-0",
+        isOpen ? "hidden" : "left-0 block w-full"
       )}
     >
       <div className="px-5">
         <div className="flex justify-between py-4">
           <div className="text-2xl font-bold text-neutral-800">Messages</div>
-          <div className="rounded-full w-8 h-8 flex items-center justify-center bg-gray-200 text-gray-600 cursor-pointer hover:opacity-75 transition">
+          <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200 text-gray-600 transition hover:opacity-75">
             <MdOutlineGroupAdd size={20} />
           </div>
         </div>

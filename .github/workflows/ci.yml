@@ -14,10 +14,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Typecheck
-        run: npm run typecheck
+      - name: Format
+        run: npm run format
 
       - name: Lint
         run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck

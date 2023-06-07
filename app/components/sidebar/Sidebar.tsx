@@ -9,7 +9,7 @@ const Sidebar = async ({ children }: React.PropsWithChildren) => {
     <div className="h-full">
       <DesktopSidebar currentUser={currentUser!} />
       <MobileFooter />
-      <main className="lg:pl-20 h-full">{children}</main>
+      <main className="h-full lg:pl-20">{children}</main>
     </div>
   );
 };

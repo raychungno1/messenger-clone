@@ -4,7 +4,7 @@ import UserList from "./components/UserList";
 
 const UsersLayout = async ({ children }: React.PropsWithChildren) => {
   const users = await getUsers();
-  
+
   return (
     // @ts-expect-error Server Component
     <Sidebar>
